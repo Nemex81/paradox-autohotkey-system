@@ -32,28 +32,21 @@ return
 ; FUNCTION: Announce(message)
 ; Annuncio vocale principale (NVDA o SAPI), salta se GameIntenseMode o disattivato
 Announce(message) {
-    global UseNVDA, SpeechEnabled, GameIntenseMode, nvdaControllerClient
-
+    global UseNVDA, SpeechEnabled, GameIntenseMode
+    
     if (GameIntenseMode || !SpeechEnabled)
         return
-
-    if (UseNVDA) {
-        if (nvdaControllerClient && nvdaRunning()) {
-            nvdaSpeak(message)
-            return
-        } else {
-            UseNVDA := false
-        }
-    }
-
+    
     try {
-        static speaker := ComObjCreate("SAPI.SpVoice")
+        speaker := ComObjCreate("SAPI.SpVoice")  ; Nuovo oggetto per ogni call
         speaker.Rate := 1
-        speaker.Speak(message, 1)  ; SVSFlagsAsync
+        speaker.Speak(message, 1)
+        speaker := ""  ; Cleanup
     } catch e {
         AnnounceFallback(message)
     }
 }
+
 
 
 ; FUNCTION: AnnouncePriority(message)
