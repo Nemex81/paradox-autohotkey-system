@@ -1,0 +1,15 @@
+# File temporanei
+*.tmp
+*.temp
+
+# Logs
+*.log
+debug.log
+paradox_script.log
+
+# File di sistema
+Thumbs.db
+.DS_Store
+
+# Backup AutoHotkey
+*_backup.ahk
