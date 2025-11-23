@@ -23,14 +23,14 @@ Shift+Freccia Giù  Scroll Giù (10 passi)
     (
 CLICK E INTERAZIONE
 ===================
-ControbarrA (\)    scansione ocr rapida
-VIRGOLA (,)        Click sinistro e scansione ocr
-PUNTO (.)          Click destro
-Ctrl+VIRGOLA       Control click
-Shift+VIRGOLA      Routing mouse al cursore nvda
-- (trattino)       Click sinistro nel punto del cursore NVDA
-Ctrl+- (trattino)  Sposta il puntatore del mouse nella posizione del cursore ocr
-Ctrl+Enter         Invio sul punto del cursore NVDA
+ControbarrA (\)                     scansione ocr rapida
+VIRGOLA (,)                         Click sinistro e scansione ocr
+PUNTO (.)                           Click destro
+Ctrl+VIRGOLA                        Control click
+Shift+VIRGOLA                       Routing mouse al cursore nvda
+- (trattino)                        Click sinistro nel punto del cursore NVDA
+Ctrl+\ (control + controbarra)      Sposta il puntatore del mouse nella posizione del cursore ocr
+Ctrl+Enter                          Invio sul punto del cursore NVDA
 )
 
     quickActionsText =

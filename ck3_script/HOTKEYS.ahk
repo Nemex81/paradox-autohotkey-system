@@ -274,6 +274,54 @@ if (CenterMouse()) {
 }
 return
 
+
+
+; ========================================
+; HOTKEY: "-" - Click nel punto del cursore NVDA
+;          + suono di click
+;          + mouse parcheggiato fuori schermo
+; ========================================
+-::
+global ScriptEnabled
+if (!ScriptEnabled)
+    return
+
+ClickAtNvdaCursor()
+return
+
+
+; ========================================
+; HOTKEY: Ctrl+- (trattino) - Routing mouse al cursore NVDA + suono
+; ========================================
+^\::
+global ScriptEnabled
+if (!ScriptEnabled)
+    return
+
+if (RouteMouse()) {
+    SoundPlay, %A_WinDir%\Media\Windows Pop-up Blocked.wav
+    ;Announce("Routing NVDA eseguito")
+} else {
+    LogError("Routing NVDA fallito in hotkey Ctrl+-")
+    Announce("Routing NVDA fallito")
+}
+return
+
+
+; ========================================
+; HOTKEY: Ctrl+Enter - Invio nel punto del cursore NVDA
+;          + suono breve
+;          + mouse parcheggiato fuori schermo
+; ========================================
+^Enter::
+global ScriptEnabled
+if (!ScriptEnabled)
+    return
+
+EnterAtNvdaCursor()
+return
+
+
 ; ----------------------------------------
 ; Macro gioco specifiche CK3
 ; ----------------------------------------
