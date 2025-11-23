@@ -13,3 +13,4 @@ Thumbs.db
 
 # Backup AutoHotkey
 *_backup.ahk
+*.exe
