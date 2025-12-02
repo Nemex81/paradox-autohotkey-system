@@ -291,7 +291,7 @@ return
 
 
 ; ========================================
-; HOTKEY: Ctrl+- (trattino) - Routing mouse al cursore NVDA + suono
+; HOTKEY: Ctrl+\ (controbarra) - Routing mouse al cursore NVDA + suono
 ; ========================================
 ^\::
 global ScriptEnabled

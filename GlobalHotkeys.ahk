@@ -225,3 +225,8 @@ InfoGUIGuiClose:
 Gui, InfoGUI:Destroy
 Announce("Finestra aiuto chiusa.")
 return
+
+
+
+
+
