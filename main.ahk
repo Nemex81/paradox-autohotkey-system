@@ -10,9 +10,11 @@ SetWorkingDir %A_ScriptDir%
 
 
 ; ========================================
-; INCLUSIONE GLOBALS (PRIMA DI TUTTO)
+; INCLUSIONE GLOBALS
 ; ========================================
 #Include globals.ahk
+#Include NVDA_DLLWrapper.ahk
+
 
 ; ========================================
 ; CARICAMENTO NVDA 
@@ -24,34 +26,27 @@ ConfigFile := A_ScriptDir . "\config.ini"
 ; Carica SOLO le impostazioni necessarie per NVDA
 IniRead, DLL_Path, %ConfigFile%, Settings, DLL_Path, nvdaControllerClient.dll
 
-; DEBUG: Verifica percorso DLL
-if (!FileExist(A_ScriptDir . "\" . DLL_Path)) {
-    MsgBox, 16, Errore DLL, DLL non trovata: %A_ScriptDir%\%DLL_Path%
-}
-
-; Carica NVDA con percorso dalla config
+; Costruisci percorso completo DLL
 dllPath := A_ScriptDir . "\" . DLL_Path
-nvdaControllerClient := DllCall("LoadLibrary", "Str", dllPath, "Ptr")
 
-if (nvdaControllerClient) {
-    result := DllCall("nvdaControllerClient.dll\nvdaController_testIfRunning")
-    if (result = 0) {
+; Prova a caricare la DLL tramite wrapper
+if (!NVDA_DLL_Load(dllPath)) {
+    UseNVDA := false
+} else {
+    ; DLL caricata: verifica se NVDA è in esecuzione
+    if (nvdaRunning()) {
         nvdaAvailable := true
         UseNVDA := true
         
-        ; Test vocale diretto immediato (conferma NVDA)
-        DllCall("nvdaControllerClient.dll\nvdaController_speakText", "Str", "Script Paradox Games caricato. NVDA rilevato.")
-        Sleep, 500  ; Pausa più lunga per l'output
+        ; FEEDBACK SONORO DI SUCCESSO (NVDA AGGANCIATO)
+        SoundPlay, C:\Windows\Media\Windows Logon.wav
+        
     } else {
         UseNVDA := false
-        MsgBox, 48, Avviso NVDA, DLL NVDA trovata ma NVDA non è in esecuzione.`n`nAvvia NVDA per usare gli annunci vocali,`naltrimenti verrà usato SAPI (voce Windows).
     }
-} else {
-    UseNVDA := false
-    MsgBox, 48, Avviso Speech, nvdaControllerClient.dll non trovata nella cartella:`n`n%A_ScriptDir%`n`nVerrà usato il sintetizzatore Windows (SAPI).`n`nPer usare NVDA, posiziona la DLL qui.
 }
 
-; DEBUG: Verifica stato NVDA
+; DEBUG: Verifica stato NVDA (tooltip informativo)
 if (UseNVDA) {
     ToolTip, NVDA ATTIVO, 10, 10, 2
 } else {
@@ -116,12 +111,10 @@ DebugMode=false
     GameIntenseMode := false
 }
 
-
 ; Usa valori config per DLL e altri
 #MaxHotkeysPerInterval %MaxInterval%
 #MaxThreadsPerHotkey 1
 SetBatchLines, -1
-
 
 ; Configurazione coordinate per multi-monitor
 CoordMode, Mouse, Screen
@@ -130,17 +123,9 @@ CoordMode, ToolTip, Screen
 
 
 ; ========================================
-; MESSAGGIO DI AVVIO FINALE
+; FEEDBACK DI AVVIO FINALE
 ; ========================================
-Sleep, 1000  ; Pausa più lunga per inizializzazione
-if (!GameIntenseMode) {
-    if (UseNVDA && nvdaRunning()) {
-        AnnouncePriority("Script Paradox Games caricato. NVDA attivo. Modulo CK3 pronto.")
-    } else {
-        AnnouncePriority("Script Paradox Games caricato. SAPI attivo. Modulo CK3 pronto.")
-    }
-} else {
-    SoundPlay, *-1
-}
+Sleep, 500
+; Suono finale che conferma: "tutto caricato, config applicata, pronto a giocare"
 SoundPlay, C:\Windows\media\Windows Notify System Generic.wav
 return

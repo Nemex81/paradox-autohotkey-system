@@ -115,12 +115,16 @@ if (OCR()) {
 }
 return
 
-
 ; HOTKEY: , - Click sinistro + OCR
-,::
-global ScriptEnabled
+,:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Click sinistro")
 if (ClickAtNvdaCursor()) {
     Sleep, 300
@@ -133,14 +137,20 @@ if (ClickAtNvdaCursor()) {
 } else {
     LogError("ClickAtNvdaCursor fallito in hotkey Comma")
 }
+CK3_ActionInProgress := false
 return
 
 
 ; HOTKEY: ^, - Control + click sinistro + OCR
-^,::
-global ScriptEnabled
+^,:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Control click")
 if (RouteMouse()) {
     ControlClick
@@ -153,14 +163,19 @@ if (RouteMouse()) {
 } else {
     LogError("RouteMouse fallito in hotkey Ctrl+Comma")
 }
+CK3_ActionInProgress := false
 return
 
-
 ; HOTKEY: +, - Routing mouse + OCR
-+,::
-global ScriptEnabled
++,:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Routing mouse")
 if (RouteMouse()) {
     Sleep, 300
@@ -171,14 +186,19 @@ if (RouteMouse()) {
 } else {
     LogError("RouteMouse fallito in hotkey Shift+Comma")
 }
+CK3_ActionInProgress := false
 return
 
-
 ; HOTKEY: . - Click destro + OCR
-.::
-global ScriptEnabled
+.:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Click destro")
 if (RouteMouse()) {
     Click, Right
@@ -193,9 +213,8 @@ if (RouteMouse()) {
 } else {
     LogError("RouteMouse fallito in hotkey Punto")
 }
+CK3_ActionInProgress := false
 return
-
-
 
 ; ----------------------------------------
 ; Utility cursore (movimenti / tooltip)
@@ -224,7 +243,6 @@ if (DismissMouse(true)) {
 }
 return
 
-
 ^d::
 global ScriptEnabled
 if (!ScriptEnabled)
@@ -236,34 +254,51 @@ return
 ; Azioni rapide (click al centro)
 ; ----------------------------------------
 
-+1::
-global ScriptEnabled
++1:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Click al centro")
 if (CenterMouse()) {
     Click
     Sleep, 100
     DismissMouse()
 }
+CK3_ActionInProgress := false
 return
 
-^2::
-global ScriptEnabled
+^2:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Click destro al centro")
 if (CenterMouse()) {
     Click, Right
     Sleep, 100
     DismissMouse()
 }
+CK3_ActionInProgress := false
 return
 
-+3::
-global ScriptEnabled
++3:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Shift click destro")
 if (CenterMouse()) {
     SendInput, {Shift Down}
@@ -272,14 +307,11 @@ if (CenterMouse()) {
     Sleep, 100
     DismissMouse()
 }
+CK3_ActionInProgress := false
 return
-
-
 
 ; ========================================
 ; HOTKEY: "-" - Click nel punto del cursore NVDA
-;          + suono di click
-;          + mouse parcheggiato fuori schermo
 ; ========================================
 -::
 global ScriptEnabled
@@ -289,9 +321,8 @@ if (!ScriptEnabled)
 ClickAtNvdaCursor()
 return
 
-
 ; ========================================
-; HOTKEY: Ctrl+\ (controbarra) - Routing mouse al cursore NVDA + suono
+; HOTKEY: Ctrl+\ - Routing mouse al cursore NVDA + suono
 ; ========================================
 ^\::
 global ScriptEnabled
@@ -300,18 +331,14 @@ if (!ScriptEnabled)
 
 if (RouteMouse()) {
     SoundPlay, %A_WinDir%\Media\Windows Pop-up Blocked.wav
-    ;Announce("Routing NVDA eseguito")
 } else {
-    LogError("Routing NVDA fallito in hotkey Ctrl+-")
+    LogError("RouteMouse fallito in hotkey Ctrl+\")
     Announce("Routing NVDA fallito")
 }
 return
 
-
 ; ========================================
 ; HOTKEY: Ctrl+Enter - Invio nel punto del cursore NVDA
-;          + suono breve
-;          + mouse parcheggiato fuori schermo
 ; ========================================
 ^Enter::
 global ScriptEnabled
@@ -321,15 +348,19 @@ if (!ScriptEnabled)
 EnterAtNvdaCursor()
 return
 
-
 ; ----------------------------------------
 ; Macro gioco specifiche CK3
 ; ----------------------------------------
 
-^g::
-global ScriptEnabled
+^g:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
+
 Announce("Selezione armate")
 mousemove, % ScaleX(700), % ScaleY(300), 0
 SendInput, {LButton Down}
@@ -339,16 +370,21 @@ Sleep, 150
 SendInput, {LButton Up}
 Sleep, 150
 DismissMouse()
+CK3_ActionInProgress := false
 return
 
 ; ----------------------------------------
 ; Pausa gioco + OCR
 ; ----------------------------------------
 
-^+p::
-global ScriptEnabled
+^+p:: 
+global ScriptEnabled, CK3_ActionInProgress
 if (!ScriptEnabled)
     return
+if (CK3_ActionInProgress)
+    return
+CK3_ActionInProgress := true
+CK3_ResetInputState()
 
 SendInput, {Escape}
 Sleep, 100
@@ -360,7 +396,7 @@ Sleep, 200
 if (!OCR()) {
     LogWarning("OCR non riuscito dopo pausa in hotkey Ctrl+Shift+P")
 }
+CK3_ActionInProgress := false
 return
-
 
 #IfWinActive  ; Fine blocco CK3

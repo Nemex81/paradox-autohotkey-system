@@ -174,3 +174,27 @@ OCR() {
 
     return true
 }
+
+; --- RESET SOFT STATO INPUT PER CK3 ---
+
+CK3_ResetInputState() {
+    ; Rilascia eventuali bottoni mouse bloccati
+    if (GetKeyState("LButton", "P"))
+        SendInput, {LButton up}
+    if (GetKeyState("RButton", "P"))
+        SendInput, {RButton up}
+
+    ; Rilascia possibili tasti NVDA (Insert / Caps / NumpadIns)
+    if (GetKeyState("Insert", "P"))
+        SendInput, {Insert up}
+    if (GetKeyState("CapsLock", "P"))
+        SendInput, {CapsLock up}
+    if (GetKeyState("NumpadIns", "P"))
+        SendInput, {NumpadIns up}
+
+    ; Assicura NumLock spento (coerente con OCR/RouteMouse)
+    if (GetKeyState("NumLock", "T"))
+        SetNumLockState, Off
+
+    Sleep, 20  ; piccola pausa per stabilizzare
+}

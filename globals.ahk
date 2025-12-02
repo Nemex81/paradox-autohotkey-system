@@ -23,3 +23,7 @@ DebugMode := false
 OCR := "Insert"
 GameIntenseMode := false
 MaxInterval := 300
+
+; Lock azioni gioco (CK3) per evitare sovrapposizioni durante lag
+global CK3_ActionInProgress
+CK3_ActionInProgress := false

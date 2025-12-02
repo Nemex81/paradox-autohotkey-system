@@ -230,3 +230,14 @@ return
 
 
 
+^+Esc::
+global ScriptEnabled
+if (!ScriptEnabled)
+    return
+
+
+CK3_ResetInputState()
+SoundPlay, C:\Windows\Media\Windows Critical Stop.wav, 1
+;AnnouncePriority("Reset di emergenza completato. Comandi pronti.")
+;Sleep, 600
+return
