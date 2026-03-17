@@ -1,3 +1,4 @@
 Framework validation report
-required_paths=20
+required_paths=34
+duplicate_paths=0
 status=PASS

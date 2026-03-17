@@ -1,41 +1,67 @@
 # Paradox Accessibility Framework
 
-Framework operativo per sviluppo semi-autonomo di addon e automazioni accessibili orientate a NVDA, con pipeline agenti, skill, prompt e quality gate ripetibili.
+Framework operativo per sviluppo semi-autonomo di addon NVDA, con orchestrazione agenti, template, prompt, skill e quality gate ripetibili.
 
-## Stato attuale
+## Obiettivo
 
-- stack operativo: framework in `.github/`
-- orchestrazione: agenti specializzati con routing manuale o automatico
-- quality gate: `validate_framework.py` e `selftest.py`
-- governance documentale: aggiornamento changelog automatizzato
+Rendere implementazione e validazione di addon NVDA prevedibili e tracciabili:
 
-## Componenti principali
+1. requisiti e design tecnico
+2. implementazione incrementale
+3. review orientata al rischio
+4. validazione automatizzata
+5. documentazione e changelog
 
-- agenti: `.github/agents/`
-- registry agenti: `.github/config/agent_registry.json`
-- script framework: `.github/scripts/`
-- prompt: `.github/prompts/`
-- skill: `.github/skills/`
-- istruzioni: `.github/instructions/`
-- piano strategico: `PIANO_FRAMEWORK_COPILOT_NVDA.md`
+## Architettura ad alto livello
 
-## Comandi principali
+- runtime framework: `.github/`
+- documentazione funzionale: `docs/`
+- tracciamento attività piano: `todo.md`
+- log modifiche: `changelog.md`
 
-- validazione struttura:
+## Mappa framework (.github)
+
+- `agents/`: ruoli specializzati del ciclo operativo
+- `config/`: registry pipeline e required_paths
+- `instructions/`: regole operative globali
+- `prompts/`: prompt task-oriented incluse varianti NVDA
+- `scripts/`: tool CLI (bootstrap, validate, selftest, lint, release prep)
+- `skills/`: base conoscenza operativa (inclusa skill NVDA)
+- `templates/`: scaffold addon e frammenti feature
+- `workflows/`: CI quality gate
+- `reports/`: evidenze di validazione/pipeline
+
+Ogni cartella e sottocartella del framework contiene ora un `README.md` dedicato con panoramica dei componenti locali.
+
+## Comandi operativi principali
+
+- validazione framework:
   - `python .github/scripts/validate_framework.py`
 - selftest end-to-end:
   - `python .github/scripts/selftest.py`
-- risoluzione pipeline agenti:
+- lint addon generati:
+  - `python .github/scripts/lint_addon.py --root generated_addons`
+- bootstrap addon:
+  - `python .github/scripts/bootstrap_addon.py --addon-id helloNVDA --name "helloNVDA" --type global --author Nemex81 --version 1.0.0 --description "Pilot addon" --output-dir generated_addons`
+- pipeline agenti:
   - `python .github/scripts/run_agent_pipeline.py --task-type feature --mode auto`
 - aggiornamento changelog:
   - `python .github/scripts/update_changelog.py --title "Titolo" --category Changed --details "Dettaglio"`
 
+## Addon NVDA: modalità supportate
+
+- global addon: estensioni in `globalPlugins/`
+- app addon: estensioni in `appModules/` con possibile uso di overlay class
+
+Riferimento API obbligatorio:
+
+- repository locale `nvda`
+- `nvda/source`
+- `nvda/projectDocs/dev/developerGuide/developerGuide.md`
+
 ## Legacy AHK
 
-Il precedente runtime AutoHotkey e stato deprecato nel perimetro corrente.
-
-- elementi utili riciclati: pattern hotkey, flussi OCR/click, contenuti help
-- elementi runtime rimossi: eseguibile/script AHK monolitici e config legacy
+Il runtime AutoHotkey storico e deprecato nel perimetro framework corrente.
 
 Riferimenti di riciclo:
 
