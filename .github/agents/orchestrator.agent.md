@@ -19,6 +19,17 @@ Coordina l'intero ciclo richiesta -> consegna senza perdere coerenza tra obietti
 - ordine handoff
 - report sintetico finale
 
+# NVDA Context
+
+Classificazione task NVDA obbligatoria:
+- `global-plugin`: feature/modifica in `globalPlugins`
+- `app-module`: feature/modifica in `appModules`
+- `framework`: aggiornamenti a `.github/` (agenti, script, prompt, skill, CI)
+
+Routing minimo consigliato:
+- `global-plugin`/`app-module`: Requisiti -> Architettura -> Implementazione -> Review -> Validazione
+- `framework`: Architettura -> Implementazione -> Validazione -> Documentazione
+
 # Regole
 
 1. In modalita auto usa il registry in `.github/config/agent_registry.json`.

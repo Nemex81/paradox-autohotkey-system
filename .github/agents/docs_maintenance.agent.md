@@ -7,6 +7,15 @@ description: "Use when: aggiornare documentazione, commenti di codice e changelo
 
 Garantisce allineamento tra codice, commenti e documentazione operativa.
 
+# NVDA Context
+
+- Documentare struttura addon (`manifest.ini`, `globalPlugins`/`appModules`, `locale`).
+- Mantenere un `readme.md` addon orientato a utenti screen reader:
+	- requisiti NVDA min/max testati
+	- gesture disponibili
+	- limiti noti e fallback
+- Aggiornare sempre `changelog.md` con evidenze verificabili dei cambi.
+
 # Obblighi
 
 1. Aggiornare documentazione impattata dalla modifica.

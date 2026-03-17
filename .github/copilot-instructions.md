@@ -35,6 +35,18 @@ Useful operational commands:
 - Add code comments only where logic is non-trivial.
 - Prefer linking existing docs instead of duplicating long explanations.
 
+## NVDA API Reference
+
+- Use local `nvda` workspace repository as primary API source of truth.
+- Before implementation touching NVDA APIs, verify module and symbol names against `nvda/source` and `nvda/projectDocs/dev/developerGuide/developerGuide.md`.
+- Use `.github/skills/nvda_addon_development.skill.md` as mandatory operational baseline.
+
+## Addon Types
+
+- `global` addon: use `globalPlugins/` for functionality available across applications.
+- `app` addon: use `appModules/` for per-application behavior.
+- For `app` addons, always declare target application and evaluate need for overlay classes (`chooseNVDAObjectOverlayClasses`) and `event_NVDAObject_init`.
+
 ## Pitfalls
 
 - Path mismatches between config/scripts/CI break both validation gates.
