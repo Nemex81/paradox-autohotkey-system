@@ -1,0 +1,3 @@
+Framework validation report
+required_paths=20
+status=PASS

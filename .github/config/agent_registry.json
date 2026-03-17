@@ -1,0 +1,67 @@
+{
+  "agent_version": "1.0.0",
+  "default_mode": "auto",
+  "agents": {
+    "orchestrator": ".github/agents/orchestrator.agent.md",
+    "requirements": ".github/agents/requirements.agent.md",
+    "architecture": ".github/agents/architecture.agent.md",
+    "implementation": ".github/agents/implementation.agent.md",
+    "review": ".github/agents/review.agent.md",
+    "validation": ".github/agents/validation.agent.md",
+    "release": ".github/agents/release.agent.md",
+    "docs": ".github/agents/docs_maintenance.agent.md"
+  },
+  "manual_aliases": {
+    "orchestratore": "orchestrator",
+    "analisi": "requirements",
+    "architettura": "architecture",
+    "implementazione": "implementation",
+    "review": "review",
+    "validazione": "validation",
+    "release": "release",
+    "documentazione": "docs"
+  },
+  "pipelines": {
+    "new-addon": [
+      "requirements",
+      "architecture",
+      "implementation",
+      "review",
+      "validation",
+      "docs"
+    ],
+    "feature": [
+      "requirements",
+      "architecture",
+      "implementation",
+      "review",
+      "validation",
+      "docs"
+    ],
+    "bugfix": [
+      "requirements",
+      "implementation",
+      "review",
+      "validation",
+      "docs"
+    ],
+    "refactor": [
+      "requirements",
+      "architecture",
+      "implementation",
+      "review",
+      "validation",
+      "docs"
+    ],
+    "docs": [
+      "docs",
+      "review",
+      "validation"
+    ],
+    "release": [
+      "validation",
+      "release",
+      "docs"
+    ]
+  }
+}

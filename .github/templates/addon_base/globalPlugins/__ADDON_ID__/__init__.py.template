@@ -1,0 +1,16 @@
+# -*- coding: UTF-8 -*-
+"""Global plugin template for __ADDON_NAME__."""
+
+import globalPluginHandler
+import ui
+
+
+class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+    scriptCategory = "__ADDON_NAME__"
+
+    def script_announceHello(self, gesture):
+        ui.message("__ADDON_NAME__ active")
+
+    __gestures = {
+        "kb:NVDA+shift+h": "announceHello",
+    }

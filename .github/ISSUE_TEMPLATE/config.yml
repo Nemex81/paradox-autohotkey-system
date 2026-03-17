@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Framework discussion
+    url: https://example.invalid/discussions
+    about: Use discussions for design ideas and early planning.

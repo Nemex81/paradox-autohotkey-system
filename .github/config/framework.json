@@ -1,0 +1,25 @@
+{
+  "required_paths": [
+    ".github/config/agent_registry.json",
+    ".github/agents/orchestrator.agent.md",
+    ".github/agents/requirements.agent.md",
+    ".github/agents/architecture.agent.md",
+    ".github/agents/implementation.agent.md",
+    ".github/agents/review.agent.md",
+    ".github/agents/validation.agent.md",
+    ".github/agents/release.agent.md",
+    ".github/agents/docs_maintenance.agent.md",
+    ".github/instructions/autonomous_framework.instructions.md",
+    ".github/templates/addon_base/manifest.ini.template",
+    ".github/templates/addon_base/globalPlugins/__ADDON_ID__/__init__.py.template",
+    ".github/scripts/bootstrap_addon.py",
+    ".github/scripts/validate_framework.py",
+    ".github/scripts/release_prep.py",
+    ".github/scripts/run_agent_pipeline.py",
+    ".github/scripts/update_changelog.py",
+    ".github/skills/agent_orchestration.skill.md",
+    ".github/skills/documentation_maintenance.skill.md",
+    ".github/workflows/ci.yml"
+  ],
+  "report_file": ".github/reports/last_validation_report.txt"
+}
