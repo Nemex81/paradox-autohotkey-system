@@ -1,0 +1,14 @@
+# -*- coding: UTF-8 -*-
+"""Overlay class template for __APP_NAME__."""
+
+from NVDAObjects.IAccessible import IAccessible
+from scriptHandler import script
+import ui
+
+
+class __APP_NAME__Overlay(IAccessible):
+    """Example overlay class for custom control behavior."""
+
+    @script(gesture="kb:NVDA+shift+o", description="Overlay test script")
+    def script_overlayAnnounce(self, gesture):
+        ui.message("Overlay active")

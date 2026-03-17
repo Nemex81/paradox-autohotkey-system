@@ -19,6 +19,13 @@ def main() -> int:
     report_file = root / cfg.get("report_file", ".github/reports/last_validation_report.txt")
     report_file.parent.mkdir(parents=True, exist_ok=True)
 
+    duplicates = []
+    seen = set()
+    for rel in required_paths:
+        if rel in seen:
+            duplicates.append(rel)
+        seen.add(rel)
+
     missing = []
     for rel in required_paths:
         path = root / rel
@@ -28,15 +35,22 @@ def main() -> int:
     lines = []
     lines.append("Framework validation report")
     lines.append(f"required_paths={len(required_paths)}")
+    lines.append(f"duplicate_paths={len(duplicates)}")
 
-    if missing:
+    if missing or duplicates:
         lines.append("status=FAIL")
-        lines.append("missing:")
-        lines.extend(f"- {item}" for item in missing)
+        if missing:
+            lines.append("missing:")
+            lines.extend(f"- {item}" for item in missing)
+        if duplicates:
+            lines.append("duplicates:")
+            lines.extend(f"- {item}" for item in duplicates)
         report_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print("FAIL: framework validation")
         for item in missing:
             print(f"missing: {item}")
+        for item in duplicates:
+            print(f"duplicate: {item}")
         print(f"report={report_file}")
         return 1
 

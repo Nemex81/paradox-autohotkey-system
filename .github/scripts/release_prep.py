@@ -15,15 +15,28 @@ def bump_patch(version: str) -> str:
     return f"{major}.{minor}.{patch + 1}"
 
 
+def _unquote(value: str) -> tuple[str, str]:
+    text = value.strip()
+    if len(text) >= 2 and text[0] == '"' and text[-1] == '"':
+        return text[1:-1], '"'
+    if len(text) >= 2 and text[0] == "'" and text[-1] == "'":
+        return text[1:-1], "'"
+    return text, ""
+
+
 def update_manifest(manifest_path: Path) -> tuple[str, str]:
     lines = manifest_path.read_text(encoding="utf-8").splitlines()
     old = None
     new_lines = []
     for line in lines:
         if line.startswith("version = "):
-            old = line.split("=", 1)[1].strip()
+            raw = line.split("=", 1)[1].strip()
+            old, quote = _unquote(raw)
             new = bump_patch(old)
-            new_lines.append(f"version = {new}")
+            if quote:
+                new_lines.append(f"version = {quote}{new}{quote}")
+            else:
+                new_lines.append(f"version = {new}")
         else:
             new_lines.append(line)
 

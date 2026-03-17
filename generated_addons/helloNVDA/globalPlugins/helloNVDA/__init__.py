@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-"""Global plugin template for __ADDON_NAME__."""
+"""Global plugin template for helloNVDA."""
 
 import addonHandler
 import globalPluginHandler
@@ -10,7 +10,7 @@ addonHandler.initTranslation()
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-    scriptCategory = "__ADDON_NAME__"
+    scriptCategory = "helloNVDA"
 
     def __init__(self):
         super().__init__()
@@ -20,7 +20,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         description="Announce addon active status",
     )
     def script_announceHello(self, gesture):
-        ui.message("__ADDON_NAME__ active")
+        ui.message("helloNVDA active")
 
     def terminate(self):
         """Release resources when NVDA unloads this plugin."""

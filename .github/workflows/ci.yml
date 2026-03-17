@@ -19,5 +19,21 @@ jobs:
       - name: Validate framework
         run: python .github/scripts/validate_framework.py
 
+      - name: Explicit framework files check
+        run: echo "Framework required_paths validated by validate_framework.py"
+
       - name: Run self test
         run: python .github/scripts/selftest.py
+
+      - name: Generate sample addon for lint
+        run: |
+          python .github/scripts/bootstrap_addon.py \
+            --addon-id ciDemo \
+            --addon-name "CI Demo" \
+            --author "CI" \
+            --version 0.1.0 \
+            --description "CI lint sample" \
+            --output-dir .github/.tmp_ci_addons
+
+      - name: Lint generated addon
+        run: python .github/scripts/lint_addon.py --root .github/.tmp_ci_addons

@@ -1,7 +1,7 @@
-name = __ADDON_NAME__
-summary = __ADDON_DESCRIPTION__
-author = __AUTHOR__
-version = __VERSION__
-minimumNVDAVersion = 2023.1
-lastTestedNVDAVersion = 2025.1
-updateChannel = None
+name = "__ADDON_ID__"
+summary = "__ADDON_NAME__"
+author = "__AUTHOR__"
+version = "__VERSION__"
+description = "__ADDON_DESCRIPTION__"
+minimumNVDAVersion = "2023.1"
+lastTestedNVDAVersion = "2025.1"

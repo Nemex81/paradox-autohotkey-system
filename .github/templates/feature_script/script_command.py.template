@@ -1,0 +1,7 @@
+from scriptHandler import script
+import ui
+
+
+@script(gesture="kb:NVDA+shift+h", description="Run feature command")
+def script___SCRIPT_NAME__(self, gesture):
+    ui.message("Feature command executed")

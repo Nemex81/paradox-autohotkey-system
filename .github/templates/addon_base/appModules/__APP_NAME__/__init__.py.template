@@ -1,0 +1,22 @@
+# -*- coding: UTF-8 -*-
+"""App module template for __APP_NAME__."""
+
+import appModuleHandler
+from scriptHandler import script
+import ui
+
+
+class AppModule(appModuleHandler.AppModule):
+    """Example app module with init hook and overlay selection."""
+
+    def event_NVDAObject_init(self, obj):
+        # Override object properties here when needed.
+        return
+
+    def chooseNVDAObjectOverlayClasses(self, obj, clsList):
+        # Insert overlay classes conditionally, usually at index 0.
+        return
+
+    @script(gesture="kb:NVDA+shift+h", description="Announce addon status")
+    def script_announceHello(self, gesture):
+        ui.message("__ADDON_NAME__ active")

@@ -1,0 +1,21 @@
+# -*- coding: UTF-8 -*-
+"""Minimal SCons entry for NVDA addon builds.
+
+This template is intentionally minimal and meant to be adapted in addon projects
+that include NVDA's addon build helpers.
+"""
+
+import importlib.util
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).parent
+sys.path.insert(0, str(ROOT))
+
+spec = importlib.util.spec_from_file_location("buildVars", str(ROOT / "buildVars.py"))
+buildVars = importlib.util.module_from_spec(spec)
+assert spec and spec.loader
+spec.loader.exec_module(buildVars)
+
+addon_info = buildVars.addon_info
+print(f"Loaded addon metadata for: {addon_info.get('addon_name', 'unknown')}")

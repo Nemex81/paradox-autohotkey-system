@@ -1,0 +1,11 @@
+import gui
+
+
+class __PANEL_NAME__Panel(gui.settingsDialogs.SettingsPanel):
+    title = "__PANEL_TITLE__"
+
+    def makeSettings(self, settingsSizer):
+        return
+
+    def onSave(self):
+        return

@@ -1,0 +1,25 @@
+# -*- coding: UTF-8 -*-
+
+addon_info = {
+    "addon_name": "__ADDON_ID__",
+    "addon_summary": "__ADDON_NAME__",
+    "addon_description": "__ADDON_DESCRIPTION__",
+    "addon_version": "__VERSION__",
+    "addon_author": "__AUTHOR__",
+    "addon_url": "https://example.invalid/__ADDON_ID__",
+    "addon_docFileName": "readme.html",
+    "addon_minimumNVDAVersion": "2023.1",
+    "addon_lastTestedNVDAVersion": "2025.1",
+    "addon_updateChannel": None,
+}
+
+pythonSources = [
+    "globalPlugins\\*.py",
+    "globalPlugins\\*\\*.py",
+    "appModules\\*.py",
+    "appModules\\*\\*.py",
+]
+
+i18nSources = pythonSources
+
+excludedFiles = []

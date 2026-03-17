@@ -12,6 +12,7 @@ TOKENS = {
     "__AUTHOR__": "author",
     "__VERSION__": "version",
     "__ADDON_DESCRIPTION__": "description",
+    "__APP_NAME__": "app_name",
 }
 
 
@@ -27,6 +28,8 @@ def generate_addon(
     output_root: Path,
     addon_id: str,
     addon_name: str,
+    addon_type: str,
+    app_name: str,
     author: str,
     version: str,
     description: str,
@@ -34,6 +37,7 @@ def generate_addon(
     values = {
         "addon_id": addon_id,
         "addon_name": addon_name,
+        "app_name": app_name,
         "author": author,
         "version": version,
         "description": description,
@@ -49,6 +53,11 @@ def generate_addon(
 
     for path in source.rglob("*"):
         relative = path.relative_to(source)
+        if relative.parts and relative.parts[0] == "globalPlugins" and addon_type == "app":
+            continue
+        if relative.parts and relative.parts[0] == "appModules" and addon_type == "global":
+            continue
+
         rel_str = _replace_tokens(str(relative).replace("\\", "/"), values)
         target = addon_dir / Path(rel_str)
 
@@ -72,7 +81,15 @@ def generate_addon(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate NVDA addon scaffold")
     parser.add_argument("--addon-id", required=True)
-    parser.add_argument("--addon-name", required=True)
+    parser.add_argument("--addon-name", "--name", dest="addon_name", required=True)
+    parser.add_argument(
+        "--addon-type",
+        "--type",
+        dest="addon_type",
+        choices=("global", "app"),
+        default="global",
+    )
+    parser.add_argument("--app-name", default="sampleApp")
     parser.add_argument("--author", required=True)
     parser.add_argument("--version", default="0.1.0")
     parser.add_argument("--description", default="NVDA addon")
@@ -83,6 +100,9 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if args.addon_type == "app" and not args.app_name.strip():
+        raise ValueError("--app-name is required when --addon-type app")
+
     templates_root = Path(args.templates_dir)
     output_root = Path(args.output_dir)
     output_root.mkdir(parents=True, exist_ok=True)
@@ -92,6 +112,8 @@ def main() -> int:
         output_root=output_root,
         addon_id=args.addon_id,
         addon_name=args.addon_name,
+        addon_type=args.addon_type,
+        app_name=args.app_name,
         author=args.author,
         version=args.version,
         description=args.description,
@@ -99,6 +121,7 @@ def main() -> int:
 
     print("PASS: scaffold created")
     print(f"addon_dir={addon_dir}")
+    print(f"addon_type={args.addon_type}")
     return 0
 
 

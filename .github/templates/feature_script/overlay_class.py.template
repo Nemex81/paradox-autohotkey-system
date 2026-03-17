@@ -1,0 +1,9 @@
+from NVDAObjects.IAccessible import IAccessible
+from scriptHandler import script
+import ui
+
+
+class __OVERLAY_CLASS__(IAccessible):
+    @script(gesture="kb:NVDA+shift+o", description="Overlay command")
+    def script_overlayCommand(self, gesture):
+        ui.message("Overlay command executed")
