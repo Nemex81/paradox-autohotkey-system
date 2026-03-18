@@ -15,5 +15,7 @@ applyTo: "**"
 6. Prima di ogni task implementativo che tocca API NVDA:
    - dichiara esplicitamente i moduli NVDA da usare;
    - verifica i moduli nella skill `.github/skills/nvda_addon_development.skill.md` e nella fonte locale `nvda`.
+   - per analisi incrociate, consulta anche i repository NV Access locali disponibili (es. `nvda-misc-deps`, `NSIS-build`, `javaAccessBridge32-bin`) in sola lettura.
+   - non modificare repository esterni: sono fonti di consultazione, non target di implementazione del framework.
 7. Durante implementazioni guidate da piano, aggiorna il tracker operativo `todo.md` con checkbox fase/sottofase.
 8. Se emerge una patch correttiva rispetto al piano, documenta problema, strategia corretta e impatto nel tracker operativo e nel changelog.

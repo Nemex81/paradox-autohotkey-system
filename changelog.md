@@ -25,6 +25,7 @@
 - Creato .github/copilot-instructions.md con architettura, comandi e convenzioni operative
 - Aggiunti link a documentazione esistente per evitare duplicazioni
 - Aggiunta knowledge base `docs/nvda_addon_sources.md` con fonti web curate per sviluppo addon NVDA (API, community, Python, accessibilita e quality)
+- Integrata policy di consultazione read-only dei repository NV Access locali per analisi incrociate in `.github/copilot-instructions.md`, `.github/instructions/autonomous_framework.instructions.md` e `docs/nvda_addon_sources.md`
 
 ## [1.0.0] - 2025-11-22
 

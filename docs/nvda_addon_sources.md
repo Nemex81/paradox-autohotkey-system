@@ -43,3 +43,7 @@ Quando un task tocca API NVDA, la fonte principale resta il repository NVDA loca
 
 - nvda/source
 - nvda/projectDocs/dev/developerGuide/developerGuide.md
+
+Per analisi incrociate e controlli di compatibilita, usa anche i repository NV Access locali disponibili in sola lettura (es. nvda-misc-deps, NSIS-build, javaAccessBridge32-bin).
+
+Regola di sicurezza operativa: questi repository esterni sono solo fonti di consultazione e non devono essere modificati dal framework.

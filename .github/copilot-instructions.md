@@ -39,6 +39,8 @@ Useful operational commands:
 
 - Use local `nvda` workspace repository as primary API source of truth.
 - Before implementation touching NVDA APIs, verify module and symbol names against `nvda/source` and `nvda/projectDocs/dev/developerGuide/developerGuide.md`.
+- Treat local NV Access repositories (for example `nvda`, `nvda-misc-deps`, `NSIS-build`, `javaAccessBridge32-bin`) as read-only sources for cross-analysis and compatibility checks.
+- Never modify files in those external source repositories from this framework workspace; use them only for consultation and evidence.
 - Use `.github/skills/nvda_addon_development.skill.md` as mandatory operational baseline.
 
 ## Addon Types
