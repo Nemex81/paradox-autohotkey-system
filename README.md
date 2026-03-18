@@ -58,6 +58,7 @@ Riferimento API obbligatorio:
 - repository locale `nvda`
 - `nvda/source`
 - `nvda/projectDocs/dev/developerGuide/developerGuide.md`
+- raccolta fonti operative: `docs/nvda_addon_sources.md`
 
 ## Legacy AHK
 
