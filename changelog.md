@@ -37,6 +37,7 @@
 - Pulizia repository addon CK3: rimossi `__pycache__` tracciati accidentalmente e introdotto `.gitignore` locale per escludere artefatti Python compilati
 - Corrette versioni NVDA in `buildVars.py` da stringhe a tuple per addon generati (`helloNVDA`, `paradoxCK3`) e per il template `.github/templates/addon_base/buildVars.py.template`, allineando il packaging SCons
 - Rafforzato il piano: gate G6 riportato a `IN VERIFICA` fino a test manuale NVDA reale e aggiunto pre-flight obbligatorio nel piano CK3 prima della Fase 0
+- Migliorata compatibilita loader NVDA per CK3: entrypoint spostato da `appModules/ck3/__init__.py` a `appModules/ck3.py`; `RuntimeState` ora cablato nel flusso reale con sincronizzazione verso `config.conf`
 
 ### Fixed
 

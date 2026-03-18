@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-"""App module template for ck3."""
+"""CK3 app-module entrypoint (flat layout) for NVDA loader compatibility."""
 
 import appModuleHandler
 import config
@@ -9,10 +9,11 @@ import ui
 
 from appModules.paradox_ck3 import config as ck3Config
 from appModules.paradox_ck3.help_text import QUICK_HELP, formatStatusMessage
+from appModules.paradox_ck3.state import RuntimeState
 
 
 class AppModule(appModuleHandler.AppModule):
-    """Example app module with init hook and overlay selection."""
+    """CK3 app module baseline scripts and runtime wiring."""
 
     scriptCategory = "Paradox CK3"
 
@@ -20,43 +21,35 @@ class AppModule(appModuleHandler.AppModule):
         super().__init__(*args, **kwargs)
         ck3Config.ensureConfigSpec()
         self._settings = ck3Config.getSection()
+        self._state = RuntimeState.fromSettings(self._settings)
         log.debug("paradoxCK3: baseline app module loaded")
 
-    def _getBoolSetting(self, key, default):
-        value = self._settings.get(key, default)
-        if isinstance(value, str):
-            return value.strip().lower() in ("1", "true", "yes", "on")
-        return bool(value)
-
     def _saveSettings(self):
+        self._state.applyToSettings(self._settings)
         try:
             config.conf.save()
         except Exception:
             log.warning("paradoxCK3: unable to persist settings", exc_info=True)
 
     def event_NVDAObject_init(self, obj):
-        # Override object properties here when needed.
         return
 
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
-        # Insert overlay classes conditionally, usually at index 0.
         return
 
     def terminate(self):
-        # Release resources (timers, caches, handles) when NVDA unloads this module.
         log.debug("paradoxCK3: app module terminated")
         super().terminate()
 
     @script(gesture="kb:NVDA+shift+e", description="Toggle Paradox CK3 addon enabled state")
     def script_toggleEnabled(self, gesture):
-        enabled = self._getBoolSetting("enabled", True)
-        self._settings["enabled"] = (not enabled)
+        self._state.enabled = not self._state.enabled
         self._saveSettings()
-        ui.message("Paradox CK3 attivato" if self._settings["enabled"] else "Paradox CK3 disattivato")
+        ui.message("Paradox CK3 attivato" if self._state.enabled else "Paradox CK3 disattivato")
 
     @script(gesture="kb:NVDA+shift+s", description="Report Paradox CK3 addon status")
     def script_reportStatus(self, gesture):
-        ui.message(formatStatusMessage(self._settings))
+        ui.message(formatStatusMessage(self._state.toDict()))
 
     @script(gesture="kb:NVDA+shift+h", description="Paradox CK3 quick help")
     def script_quickHelp(self, gesture):
