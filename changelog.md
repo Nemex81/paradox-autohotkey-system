@@ -33,6 +33,8 @@
 - Piano CK3 aggiornato con snippet operativo concreto per registrazione `config.conf.spec["paradoxCK3"]`, gestione del rischio screen curtain come vincolo API pubbliche e allineamento packaging (`buildVars.py`/`sconstruct`) in Fase 0
 - Piano framework riallineato con sezione formale `Allineamento Tracciabilita (2026-03-18)` e `Patch #1` per chiudere il disallineamento tra gate PASS e checklist storiche
 - Avviata implementazione Fase 0 CK3: generato addon app-specific `generated_addons/paradoxCK3` con baseline caricabile, package interno `appModules/paradox_ck3` (config/state/mouse/ocr/game/help), registrazione config spec `paradoxCK3` nel modulo `appModules/ck3/__init__.py` e validazione PASS (`lint_addon`, `validate_framework`, `selftest`)
+- Implementata Fase 1 minima CK3 nel modulo `appModules/ck3`: aggiunti script CK3-scoped per toggle enabled, report stato e help rapido (`NVDA+Shift+E/S/H`), con persistenza configurazione e riepilogo stato vocalizzato
+- Pulizia repository addon CK3: rimossi `__pycache__` tracciati accidentalmente e introdotto `.gitignore` locale per escludere artefatti Python compilati
 
 ## [1.0.0] - 2025-11-22
 
