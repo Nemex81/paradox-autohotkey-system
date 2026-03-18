@@ -32,6 +32,7 @@
 - Validato e corretto il piano CK3 contro le API NVDA locali: package helper spostato sotto `appModules/`, config custom resa esplicita e OCR allineato alle guardie del comando nativo NVDA
 - Piano CK3 aggiornato con snippet operativo concreto per registrazione `config.conf.spec["paradoxCK3"]`, gestione del rischio screen curtain come vincolo API pubbliche e allineamento packaging (`buildVars.py`/`sconstruct`) in Fase 0
 - Piano framework riallineato con sezione formale `Allineamento Tracciabilita (2026-03-18)` e `Patch #1` per chiudere il disallineamento tra gate PASS e checklist storiche
+- Avviata implementazione Fase 0 CK3: generato addon app-specific `generated_addons/paradoxCK3` con baseline caricabile, package interno `appModules/paradox_ck3` (config/state/mouse/ocr/game/help), registrazione config spec `paradoxCK3` nel modulo `appModules/ck3/__init__.py` e validazione PASS (`lint_addon`, `validate_framework`, `selftest`)
 
 ## [1.0.0] - 2025-11-22
 
