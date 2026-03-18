@@ -69,12 +69,14 @@ Integrare nel framework esistente tutte le componenti mancanti specifiche per lo
 | Gate | Condizione | Stato |
 |------|-----------|-------|
 | G0 | Path framework coerenti (già PASS) | ✅ PASS |
-| G1 | Skill NVDA presente e referenziata dagli agenti | ⬜ APERTO |
-| G2 | Tutti gli agenti hanno sezione `# NVDA Context` | ⬜ APERTO |
-| G3 | Template addon completo (buildVars, locale, appModules) | ⬜ APERTO |
-| G4 | Prompt NVDA-specifici presenti e testati | ⬜ APERTO |
-| G5 | CI verifica sintassi Python addon e manifest | ⬜ APERTO |
-| G6 | Ciclo completo testato su addon pilota | ⬜ APERTO |
+| G1 | Skill NVDA presente e referenziata dagli agenti | ✅ PASS |
+| G2 | Tutti gli agenti hanno sezione `# NVDA Context` | ✅ PASS |
+| G3 | Template addon completo (buildVars, locale, appModules) | ✅ PASS |
+| G4 | Prompt NVDA-specifici presenti e testati | ✅ PASS |
+| G5 | CI verifica sintassi Python addon e manifest | ✅ PASS |
+| G6 | Ciclo completo testato su addon pilota | ✅ PASS |
+
+Stato operativo dettagliato allineato in `todo.md` (tutte le fasi 1-7 completate).
 
 ---
 

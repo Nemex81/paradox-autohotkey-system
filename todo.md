@@ -72,3 +72,6 @@ Fonte API NVDA: repository locale nvda, branch master, commit be350b052.
 - [x] Eseguire selftest.py
 - [x] Documentare test manuale in docs/test_pilota.md
 - [x] Aggiornare changelog.md
+
+## Stato complessivo
+- [x] Piano di integrazione completato e allineato ai deliverable presenti nel repository
