@@ -27,6 +27,8 @@
 
 ## Mappa del Framework Attuale (Baseline)
 
+Nota: la mappa seguente e uno snapshot storico pre-completamento; lo stato operativo corrente e riportato nei gate e in `todo.md`.
+
 ```
 paradox-autohotkey-system/
 ├── .github/
@@ -38,10 +40,10 @@ paradox-autohotkey-system/
 │   │   └── autonomous_framework.instructions.md
 │   ├── prompts/             # 4 prompt generici — da estendere per NVDA
 │   ├── scripts/             # 6 script Python operativi
-│   ├── skills/              # 4 skill generiche — manca skill NVDA
+│   ├── skills/              # 4 skill generiche (baseline iniziale; skill NVDA aggiunta nelle fasi successive)
 │   ├── templates/
-│   │   ├── addon_base/      # manifest.ini + globalPlugins/__init__.py (incompleto)
-│   │   └── feature_script/  # vuoto
+│   │   ├── addon_base/      # baseline iniziale incompleta, poi completata fino a appModules/buildVars/locale
+│   │   └── feature_script/  # baseline iniziale vuota, poi completata nelle fasi successive
 │   ├── workflows/
 │   │   └── ci.yml           # validate + selftest su push/PR
 │   ├── CODEOWNERS
@@ -77,6 +79,18 @@ Integrare nel framework esistente tutte le componenti mancanti specifiche per lo
 | G6 | Ciclo completo testato su addon pilota | ✅ PASS |
 
 Stato operativo dettagliato allineato in `todo.md` (tutte le fasi 1-7 completate).
+
+## Allineamento Tracciabilita (2026-03-18)
+
+- [x] Fase 1 completata e verificata in `todo.md`
+- [x] Fase 2 completata e verificata in `todo.md`
+- [x] Fase 3 completata e verificata in `todo.md`
+- [x] Fase 4 completata e verificata in `todo.md`
+- [x] Fase 5 completata e verificata in `todo.md`
+- [x] Fase 6 completata e verificata in `todo.md`
+- [x] Fase 7 completata e verificata in `todo.md`
+
+Questa sezione chiude il disallineamento tra gate PASS e checkbox storiche del piano operativo.
 
 ---
 
@@ -365,7 +379,13 @@ Fase 1 (Skill NVDA)
 **Impatto su altre fasi**: nessuno / specificare
 ```
 
-*(sezione vuota — nessuna patch applicata finora)*
+### Patch #1 — 2026-03-18
+**Fase interessata**: Governance tracciabilita (trasversale Fasi 1-7)
+**Problema riscontrato**: gate globali in stato PASS con checklist operative storiche rimaste in stato aperto nel piano.
+**Strategia originale**: usare il piano come checklist viva durante l'implementazione.
+**Strategia corretta**: mantenere il piano come baseline storico e introdurre una sezione esplicita di riconciliazione, rendendo `todo.md` la fonte operativa vincolante.
+**File modificati**: `todo - PIANO_INTEGRAZIONE_NVDA_FRAMEWORK.md`
+**Impatto su altre fasi**: nessuno sul codice; migliora coerenza audit documentale.
 
 ---
 

@@ -91,6 +91,31 @@ Nota di validazione:
 
 `config.conf["paradoxCK3"]` non va trattata come disponibile implicitamente. Il piano deve prevedere inizializzazione e registrazione esplicita della sezione/config spec prima del primo accesso.
 
+Snippet operativo consigliato (pattern NVDA consolidato):
+
+```python
+import config
+
+_PARADOX_CK3_SPEC = {
+   "enabled": "boolean(default=true)",
+   "beeps": "boolean(default=true)",
+   "speech": "boolean(default=true)",
+   "debug": "boolean(default=false)",
+   "intenseMode": "boolean(default=false)",
+   "ocrDelayMs": "integer(default=180,min=0,max=2000)",
+}
+
+
+def ensureConfigSpec():
+   if "paradoxCK3" not in config.conf.spec:
+      config.conf.spec["paradoxCK3"] = _PARADOX_CK3_SPEC
+
+
+def getSection():
+   ensureConfigSpec()
+   return config.conf["paradoxCK3"]
+```
+
 Esito atteso:
 
 - sostituzione completa delle funzioni AHK di stato, ma solo quando CK3 e il contesto attivo
@@ -144,7 +169,7 @@ Strategia addon:
    - contenuto non visibile
    - OCR non disponibile o fallito
    - Windows OCR non disponibile nel sistema
-   - screen curtain attivo, se il comportamento effettivo segue il comando OCR nativo di NVDA
+   - screen curtain attivo: da trattare come rischio osservazionale, non come guardia implementabile via API pubblica stabile
 
 Esito atteso:
 
@@ -245,6 +270,7 @@ Set iniziale consigliato:
 2. definire manifest, versione target NVDA e struttura moduli interni sotto `appModules/`
 3. aggiungere logging dedicato
 4. registrare la config spec custom `paradoxCK3` prima di leggere o scrivere stato addon
+5. predisporre packaging iniziale con `buildVars.py` e `sconstruct` per build `.nvda-addon` ripetibile
 
 Output:
 
@@ -353,6 +379,7 @@ Per evitare ambiguita future:
 2. OCR su elementi dinamici del gioco puo richiedere timing e refresh dedicati
 3. alcune gesture AHK storiche potrebbero confliggere con gesture NVDA o Windows gia esistenti
 4. le macro dipendenti dalla risoluzione non vanno promosse a default senza profili testati
+5. stato screen curtain non interrogabile in modo affidabile da API pubbliche addon: verificare solo comportamento end-to-end dei comandi OCR
 
 ## Decisione strategica finale
 

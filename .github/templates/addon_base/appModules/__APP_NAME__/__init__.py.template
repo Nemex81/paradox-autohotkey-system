@@ -9,6 +9,11 @@ import ui
 class AppModule(appModuleHandler.AppModule):
     """Example app module with init hook and overlay selection."""
 
+    scriptCategory = "__ADDON_NAME__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     def event_NVDAObject_init(self, obj):
         # Override object properties here when needed.
         return
@@ -16,6 +21,10 @@ class AppModule(appModuleHandler.AppModule):
     def chooseNVDAObjectOverlayClasses(self, obj, clsList):
         # Insert overlay classes conditionally, usually at index 0.
         return
+
+    def terminate(self):
+        # Release resources (timers, caches, handles) when NVDA unloads this module.
+        super().terminate()
 
     @script(gesture="kb:NVDA+shift+h", description="Announce addon status")
     def script_announceHello(self, gesture):
