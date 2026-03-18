@@ -26,6 +26,9 @@
 - Aggiunti link a documentazione esistente per evitare duplicazioni
 - Aggiunta knowledge base `docs/nvda_addon_sources.md` con fonti web curate per sviluppo addon NVDA (API, community, Python, accessibilita e quality)
 - Integrata policy di consultazione read-only dei repository NV Access locali per analisi incrociate in `.github/copilot-instructions.md`, `.github/instructions/autonomous_framework.instructions.md` e `docs/nvda_addon_sources.md`
+- Aggiunto piano root `PIANO_MIGRAZIONE_CK3_AHK_TO_NVDA_ADDON.md` con analisi incrociata AHK/NVDA/framework e roadmap generale per creare comandi speculari CK3 in addon NVDA
+- Chiarito nel piano CK3 che tutti i comandi del nuovo addon devono restare app-specific su `ck3.exe`, senza comandi globali paralleli
+- Validato e corretto il piano CK3 contro le API NVDA locali: package helper spostato sotto `appModules/`, config custom resa esplicita e OCR allineato alle guardie del comando nativo NVDA
 
 ## [1.0.0] - 2025-11-22
 
