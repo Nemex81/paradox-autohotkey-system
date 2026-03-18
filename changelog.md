@@ -35,6 +35,12 @@
 - Avviata implementazione Fase 0 CK3: generato addon app-specific `generated_addons/paradoxCK3` con baseline caricabile, package interno `appModules/paradox_ck3` (config/state/mouse/ocr/game/help), registrazione config spec `paradoxCK3` nel modulo `appModules/ck3/__init__.py` e validazione PASS (`lint_addon`, `validate_framework`, `selftest`)
 - Implementata Fase 1 minima CK3 nel modulo `appModules/ck3`: aggiunti script CK3-scoped per toggle enabled, report stato e help rapido (`NVDA+Shift+E/S/H`), con persistenza configurazione e riepilogo stato vocalizzato
 - Pulizia repository addon CK3: rimossi `__pycache__` tracciati accidentalmente e introdotto `.gitignore` locale per escludere artefatti Python compilati
+- Corrette versioni NVDA in `buildVars.py` da stringhe a tuple per addon generati (`helloNVDA`, `paradoxCK3`) e per il template `.github/templates/addon_base/buildVars.py.template`, allineando il packaging SCons
+- Rafforzato il piano: gate G6 riportato a `IN VERIFICA` fino a test manuale NVDA reale e aggiunto pre-flight obbligatorio nel piano CK3 prima della Fase 0
+
+### Fixed
+
+- Aggiunte regole esplicite `**/__pycache__/` e `**/*.pyc` nel `.gitignore` root per evitare il commit di bytecode Python
 
 ## [1.0.0] - 2025-11-22
 

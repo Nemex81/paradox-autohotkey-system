@@ -76,9 +76,10 @@ Integrare nel framework esistente tutte le componenti mancanti specifiche per lo
 | G3 | Template addon completo (buildVars, locale, appModules) | ✅ PASS |
 | G4 | Prompt NVDA-specifici presenti e testati | ✅ PASS |
 | G5 | CI verifica sintassi Python addon e manifest | ✅ PASS |
-| G6 | Ciclo completo testato su addon pilota | ✅ PASS |
+| G6 | Ciclo completo testato su addon pilota (incluso test manuale NVDA reale) | ⚠️ IN VERIFICA |
 
 Stato operativo dettagliato allineato in `todo.md` (tutte le fasi 1-7 completate).
+Nota: il gate G6 torna PASS solo dopo evidenza di test manuale eseguito su NVDA reale come descritto in Fase 7.6.
 
 ## Allineamento Tracciabilita (2026-03-18)
 
@@ -386,6 +387,14 @@ Fase 1 (Skill NVDA)
 **Strategia corretta**: mantenere il piano come baseline storico e introdurre una sezione esplicita di riconciliazione, rendendo `todo.md` la fonte operativa vincolante.
 **File modificati**: `todo - PIANO_INTEGRAZIONE_NVDA_FRAMEWORK.md`
 **Impatto su altre fasi**: nessuno sul codice; migliora coerenza audit documentale.
+
+### Patch #2 — 2026-03-18
+**Fase interessata**: Gate G6 / Fase 7 (addon pilota)
+**Problema riscontrato**: il gate G6 era marcato PASS senza evidenza esplicita del test manuale su NVDA reale.
+**Strategia originale**: considerare sufficienti i test automatici (`selftest`, `validate_framework`, `lint_addon`).
+**Strategia corretta**: mantenere G6 in stato `IN VERIFICA` fino al completamento del test manuale della Fase 7.6 su NVDA reale.
+**File modificati**: `todo - PIANO_INTEGRAZIONE_NVDA_FRAMEWORK.md`
+**Impatto su altre fasi**: nessuno sul codice; rafforza l'affidabilita della baseline prima dell'addon CK3 reale.
 
 ---
 

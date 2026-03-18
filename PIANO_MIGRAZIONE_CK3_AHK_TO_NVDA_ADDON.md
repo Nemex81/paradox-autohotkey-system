@@ -264,6 +264,13 @@ Set iniziale consigliato:
 
 ## Piano di azione generale
 
+Pre-flight obbligatorio prima della Fase 0 CK3:
+
+1. correggere `buildVars.py` dell'addon pilota e del template framework usando tuple per `addon_minimumNVDAVersion` e `addon_lastTestedNVDAVersion`
+2. confermare esclusione `__pycache__` e `*.pyc` via `.gitignore` root
+3. completare test manuale NVDA reale su `helloNVDA` (gesture `NVDA+Shift+H` e presenza categoria nel dialogo Gesti)
+4. solo dopo questi controlli, procedere con la baseline CK3 reale
+
 ### Fase 0 - Baseline addon CK3
 
 1. generare un addon di tipo `app` per `ck3.exe`

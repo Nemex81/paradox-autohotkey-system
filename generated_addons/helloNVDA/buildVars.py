@@ -8,8 +8,8 @@ addon_info = {
     "addon_author": "Nemex81",
     "addon_url": "https://example.invalid/helloNVDA",
     "addon_docFileName": "readme.html",
-    "addon_minimumNVDAVersion": "2023.1",
-    "addon_lastTestedNVDAVersion": "2025.1",
+    "addon_minimumNVDAVersion": (2023, 1, 0),
+    "addon_lastTestedNVDAVersion": (2025, 1, 0),
     "addon_updateChannel": None,
 }
 
